@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000;
 app.listen(port, async()=> {
   try {
     console.log(`listening on port ${port}`);
-    await conn.sync({ force: true });
+    //await conn.sync({ force: true });
   }
   catch(ex){
     console.log(ex);
