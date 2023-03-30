@@ -11,12 +11,19 @@ export const fetchCompanies = ()=> {
   };
 };
 
-export const fetchWidgets = () => {
+export const fetchWidgets = ()=> {
   return async(dispatch)=> {
     const response = await axios.get('/api/widgets');
     dispatch({ type: 'SET_WIDGETS', widgets: response.data });
   };
-}
+};
+
+export const createWidget = (widget)=> {
+  return async(dispatch)=> {
+    const response = await axios.post('/api/widgets', widget);
+    dispatch({ type: 'CREATE_WIDGET', widget: response.data });
+  };
+};
 
 const foo = (state = 'bar', action)=> {
   return state;
@@ -32,6 +39,9 @@ const companies = (state = [], action)=> {
 const widgets = (state = [], action)=> {
   if(action.type === 'SET_WIDGETS'){
     return action.widgets;
+  }
+  if(action.type === 'CREATE_WIDGET'){
+    return [...state, action.widget];
   }
   return state;
 };

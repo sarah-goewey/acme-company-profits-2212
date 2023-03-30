@@ -1,17 +1,16 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux'; 
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Widgets = ()=> {
   const { widgets } = useSelector(state => state);
-  const { id } = useParams();
   return (
     <ul>
       {
         widgets.map( widget => {
           return (
-            <li key={ widget.id } className={ widget.id === id ? 'selected': ''}>
-              <Link to={`/widgets/${widget.id}`}>
+            <li key={ widget.id }>
+              <Link to={`/widgets/${ widget.id}`}>
                 { widget.name }
               </Link>
             </li>
@@ -21,5 +20,7 @@ const Widgets = ()=> {
     </ul>
   );
 };
+
+export default Widgets;
 
 export default Widgets;

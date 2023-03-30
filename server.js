@@ -17,6 +17,15 @@ app.get('/api/widgets', async(req, res, next)=> {
   }
 });
 
+app.post('/api/widgets', async(req, res, next)=> {
+  try {
+    res.status(201).send(await Widget.create(req.body));
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+
 
 const port = process.env.PORT || 3000;
 

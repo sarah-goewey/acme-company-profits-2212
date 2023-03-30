@@ -9,7 +9,8 @@ const Widget = conn.define('widget', {
     primaryKey: true
   },
   name: {
-    type: STRING
+    type: STRING,
+    unique: true
   }
 });
 
