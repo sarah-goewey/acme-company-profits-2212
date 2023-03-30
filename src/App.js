@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Nav from './Nav';
 import Companies from './Companies';
 import Company from './Company';
-import { fetchCompanies } from './store';
+import Widgets from './Widgets';
+import { fetchCompanies, fetchWidgets } from './store';
 import { Routes, Route } from 'react-router-dom';
 
 const App = ()=> {
@@ -12,6 +13,7 @@ const App = ()=> {
 
   useEffect(()=> {
     dispatch(fetchCompanies());
+    dispatch(fetchWidgets());
   }, []);
   return (
     <div>
@@ -20,6 +22,7 @@ const App = ()=> {
       <Routes>
         <Route path='/companies' element={ <Companies />} />
         <Route path='/companies/:id' element={ <Company />} />
+        <Route path='/widgets' element={ <Widgets />} />
       </Routes>
     </div>
   );
