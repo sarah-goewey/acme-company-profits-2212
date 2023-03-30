@@ -10,6 +10,14 @@ export const fetchCompanies = ()=> {
     dispatch({ type: 'SET_COMPANIES', companies: response.data });
   };
 };
+
+export const fetchWidgets = () => {
+  return async(dispatch)=> {
+    const response = await axios.get('/api/widgets');
+    dispatch({ type: 'SET_WIDGETS', widgets: response.data });
+  };
+}
+
 const foo = (state = 'bar', action)=> {
   return state;
 };
@@ -21,9 +29,17 @@ const companies = (state = [], action)=> {
   return state;
 };
 
+const widgets = (state = [], action)=> {
+  if(action.type === 'SET_WIDGETS'){
+    return action.widgets;
+  }
+  return state;
+};
+
 const reducer = combineReducers({
   foo,
-  companies
+  companies,
+  widgets
 });
 
 const store = createStore(reducer, applyMiddleware(logger, thunk));
